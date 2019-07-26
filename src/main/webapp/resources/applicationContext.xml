@@ -7,11 +7,26 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!-- Injection by constructor -->
     <bean id="musicBean" class="evgenyt.springdemo.ClassicalMusic" />
-
     <bean id="musicPlayer" class="evgenyt.springdemo.MusicPlayer">
         <constructor-arg ref="musicBean" />
+    </bean>
 
+    <!-- Injection by setters -->
+    <bean id="musicBean2" class="evgenyt.springdemo.RockMusic" />
+    <bean id="musicPlayer2" class="evgenyt.springdemo.MusicPlayer">
+        <property name="music" ref="musicBean2"/>
+        <property name="name" value="Super player" />
+        <property name="volume" value="50" />
+    </bean>
+
+    <!-- Injection by properties file  -->
+    <context:property-placeholder location="classpath:musicPlayer.properties" />
+    <bean id="musicPlayer3" class="evgenyt.springdemo.MusicPlayer">
+        <property name="music" ref="musicBean2"/>
+        <property name="name" value="${musicPlayer.name}" />
+        <property name="volume" value="${musicPlayer.volume}" />
     </bean>
 
 </beans>

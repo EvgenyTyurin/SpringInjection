@@ -11,6 +11,7 @@
 
     <bean id="musicPlayer" class="evgenyt.springdemo.MusicPlayer">
         <constructor-arg ref="musicBean" />
+
     </bean>
 
 </beans>
